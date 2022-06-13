@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.1215" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1634963768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21433715820312502" />
+        <entry key="app/src/main/res/menu/logout.xml" value="0.26458536783854164" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_logo_2.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_logo_2_round.xml" value="0.1" />

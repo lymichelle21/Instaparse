@@ -5,12 +5,16 @@ import android.app.Application;
 import com.parse.Parse;
 
 public class ParseApplication extends Application {
+
+    String app_id = BuildConfig.APP_ID;
+    String client_key = BuildConfig.CLIENT_KEY;
+
     @Override
     public void onCreate() {
         super.onCreate();
         Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("WlCrtaNZeSI1UZ2WNgvjLk4thfbkPFEfEAhSrQYZ")
-                .clientKey("PpZsoqqcbOI4YEBNLRE9IwST0wdO9GzXZRf7VWRY")
+                .applicationId(app_id)
+                .clientKey(client_key)
                 .server("https://parseapi.back4app.com")
                 .build()
         );

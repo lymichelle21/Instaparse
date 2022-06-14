@@ -1,8 +1,10 @@
 package com.example.instaparse;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -19,18 +22,20 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.io.File;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1989;
+    public String photoFileName = "photo.jpg";
+    String TAG = "MainActivity";
     private Button btnLogout;
     private EditText etDescription;
     private Button btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
-
-    String TAG = "MainActivity";
-
+    private File photoFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,14 @@ public class MainActivity extends AppCompatActivity {
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnLogout = findViewById(R.id.btnLogout);
-        
+
+        btnCaptureImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchCamera();
+            }
+        });
+
         //queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +68,24 @@ public class MainActivity extends AppCompatActivity {
                 savePost(description, currentUser);
             }
         });
+    }
+
+    private void launchCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        photoFile = getPhotoFileUri(photoFileName);
+        Uri fileProvider = FileProvider.getUriForFile(MainActivity.this, "com.codepath.fileprovider", photoFile);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
+    }
+
+    private File getPhotoFileUri(String photoFileName) {
+        File mediaStorageDir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
+            Toast.makeText(MainActivity.this, "Failed to create photo directory", Toast.LENGTH_LONG).show();
+        }
+        return new File(mediaStorageDir.getPath() + File.separator + photoFileName);
     }
 
     private void savePost(String description, ParseUser currentUser) {
@@ -84,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Failed to get posts", Toast.LENGTH_LONG).show();
                     return;
                 }
-                for (Post post:posts) {
+                for (Post post : posts) {
                     Toast.makeText(MainActivity.this, "Got posts!", Toast.LENGTH_LONG).show();
                     return;
                 }

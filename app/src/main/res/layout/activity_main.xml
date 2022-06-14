@@ -11,23 +11,24 @@
         android:id="@+id/btnCaptureImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivPostImage"
+        android:layout_below="@+id/etDescription"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="21dp"
         android:text="@string/add_photo" />
 
     <ImageView
         android:id="@+id/ivPostImage"
         android:layout_width="match_parent"
-        android:layout_height="372dp"
+        android:layout_height="354dp"
+        android:background="@color/purple_200"
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
         android:id="@+id/etDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnCaptureImage"
-        android:layout_marginTop="17dp"
+        android:layout_below="@+id/ivPostImage"
+        android:layout_marginTop="15dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="Add your caption here!"
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/etDescription"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="78dp"
         android:text="Submit" />
 
 </RelativeLayout>

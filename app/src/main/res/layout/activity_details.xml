@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tvUsername"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="28sp"
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="330dp"
         android:layout_below="@+id/tvUsername"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivImage"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="28dp"
         android:textSize="18sp"
         tools:text="Don't mind me - just coding and vibing to lo-fi" />
 
@@ -37,9 +37,9 @@
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDescription"
-        android:layout_marginTop="9dp"
-        android:textSize="20sp"
-        tools:text="1h" />
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tvUsername"
+        android:text="Posted 1h" />
 
 </RelativeLayout>

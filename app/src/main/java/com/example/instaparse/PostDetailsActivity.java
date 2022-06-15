@@ -16,6 +16,7 @@ import com.parse.ParseFile;
 import org.parceler.Parcels;
 
 import java.io.File;
+import java.util.Date;
 
 public class PostDetailsActivity extends AppCompatActivity {
     Context context;
@@ -40,7 +41,10 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         tvDescription.setText(post.getDescription());
         tvUsername.setText(post.getUser().getUsername());
-        tvTime.setText("INSERT TIME HERE");
+
+        Date createdAt = post.getCreatedAt();
+        String timeAgo = Post.calculateTimeAgo(createdAt);
+        tvTime.setText("Posted " + timeAgo);
 
         ParseFile image = post.getImage();
         if (image != null) {

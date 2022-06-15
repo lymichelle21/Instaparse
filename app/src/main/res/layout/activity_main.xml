@@ -20,6 +20,8 @@
         android:id="@+id/ivPostImage"
         android:layout_width="match_parent"
         android:layout_height="354dp"
+        android:layout_below="@+id/btnFeed"
+        android:layout_marginTop="16dp"
         android:background="@color/black"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -43,5 +45,11 @@
         android:layout_marginStart="140dp"
         android:layout_marginTop="78dp"
         android:text="Submit" />
+
+    <Button
+        android:id="@+id/btnFeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Feed" />
 
 </RelativeLayout>

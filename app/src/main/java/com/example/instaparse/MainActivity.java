@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView ivPostImage;
     private Button btnSubmit;
     private File photoFile;
+    private Button btnFeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnLogout = findViewById(R.id.btnLogout);
+        btnFeed = findViewById(R.id.btnFeed);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +66,15 @@ public class MainActivity extends AppCompatActivity {
                 launchCamera();
             }
         });
+
+        btnFeed.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                launchFeed();
+            }
+        });
+
+
 
         //queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 savePost(description, currentUser, photoFile);
             }
         });
+    }
+
+    private void launchFeed() {
+        Toast.makeText(this, "Feed launched", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, FeedActivity.class);
+        startActivity(intent);
     }
 
     private void launchCamera() {

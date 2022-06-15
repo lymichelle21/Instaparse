@@ -1,5 +1,7 @@
 package com.example.instaparse;
 
-public class FeedActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class FeedActivity extends AppCompatActivity {
 
 }

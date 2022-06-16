@@ -22,8 +22,8 @@ import java.util.List;
 
 class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
-    private Context context;
-    private List<Post> posts;
+    private final Context context;
+    private final List<Post> posts;
 
     public PostsAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -60,9 +60,9 @@ class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvUsername;
-        private ImageView ivImage;
-        private TextView tvDescription;
+        private final TextView tvUsername;
+        private final ImageView ivImage;
+        private final TextView tvDescription;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

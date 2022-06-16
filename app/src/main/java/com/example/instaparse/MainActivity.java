@@ -67,35 +67,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnFeed.setOnClickListener(new View.OnClickListener(){
+        btnFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchFeed();
             }
         });
 
-
-
-        //queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String description = etDescription.getText().toString();
-                if (description.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Description cannot be empty!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (photoFile == null || ivPostImage.getDrawable() == null) {
-                    Toast.makeText(MainActivity.this, "There is no image!", Toast.LENGTH_LONG).show();
-                }
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser, photoFile);
+                submitPostToServer();
             }
         });
     }
 
+    private void submitPostToServer() {
+        String description = etDescription.getText().toString();
+        if (description.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Description cannot be empty!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (photoFile == null || ivPostImage.getDrawable() == null) {
+            Toast.makeText(MainActivity.this, "There is no image!", Toast.LENGTH_LONG).show();
+        }
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        savePost(description, currentUser, photoFile);
+    }
+
     private void launchFeed() {
-        Toast.makeText(this, "Feed launched", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, FeedActivity.class);
         startActivity(intent);
     }
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 if (e != null) {
                     Toast.makeText(MainActivity.this, "Error saving post!", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(MainActivity.this, "Post saved!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Posted!", Toast.LENGTH_LONG).show();
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
             }
@@ -189,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 for (Post post : posts) {
-                    Toast.makeText(MainActivity.this, "Got posts!", Toast.LENGTH_LONG).show();
                     return;
                 }
             }

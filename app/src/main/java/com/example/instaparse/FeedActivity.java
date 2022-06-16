@@ -20,11 +20,11 @@ import java.util.List;
 
 public class FeedActivity extends AppCompatActivity {
 
-    private static int POST_LIMIT = 20;
+    private static final int POST_LIMIT = 20;
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
     private RecyclerView rvPosts;
-    private String TAG = "FeedActivity";
+    private final String TAG = "FeedActivity";
     private SwipeRefreshLayout swipeContainer;
 
     @Override

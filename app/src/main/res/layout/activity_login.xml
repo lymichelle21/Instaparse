@@ -12,6 +12,7 @@
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Username"
@@ -65,5 +66,23 @@
         android:layout_marginStart="135dp"
         android:layout_marginTop="12dp"
         android:text="Sign Up" />
+
+    <ImageView
+        android:id="@+id/ivCamera"
+        android:layout_width="365dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="30dp"
+        app:srcCompat="@mipmap/ic_logo_2_foreground"
+        tools:srcCompat="@mipmap/ic_logo_2_foreground" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivCamera"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="6dp"
+        android:text="InstaParse"
+        android:textSize="30sp" />
 
 </RelativeLayout>

@@ -1,7 +1,6 @@
 package com.example.instaparse;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +29,6 @@ public class FeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
-
         rvPosts = findViewById(R.id.rvPosts);
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(this, allPosts);
@@ -38,15 +36,12 @@ public class FeedActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvPosts.setLayoutManager(linearLayoutManager);
         queryPosts();
-
         scrollListener = new com.codepath.apps.restclienttemplate.EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                Toast.makeText(FeedActivity.this, "Loading more posts", Toast.LENGTH_LONG).show();
                 queryNextPosts();
             }
         };
-
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -54,9 +49,7 @@ public class FeedActivity extends AppCompatActivity {
                 fetchTimelineAsync(0);
             }
         });
-
         rvPosts.addOnScrollListener(scrollListener);
-
     }
 
     private void queryNextPosts() {
@@ -69,11 +62,8 @@ public class FeedActivity extends AppCompatActivity {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
+                    Toast.makeText(FeedActivity.this, "Failed to query more posts", Toast.LENGTH_LONG).show();
                     return;
-                }
-                for (Post post : posts) {
-                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
@@ -91,11 +81,8 @@ public class FeedActivity extends AppCompatActivity {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
+                    Toast.makeText(FeedActivity.this, "Failed to query posts", Toast.LENGTH_LONG).show();
                     return;
-                }
-                for (Post post : posts) {
-                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();

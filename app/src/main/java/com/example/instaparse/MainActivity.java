@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSubmit;
     private File photoFile;
     private Button btnFeed;
+    private ProgressBar pb;
 
 
     @Override
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         btnLogout = findViewById(R.id.btnLogout);
         btnFeed = findViewById(R.id.btnFeed);
+        pb = findViewById(R.id.pbLoading);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pb.setVisibility(ProgressBar.VISIBLE);
                 submitPostToServer();
             }
         });
@@ -88,10 +91,13 @@ public class MainActivity extends AppCompatActivity {
         String description = etDescription.getText().toString();
         if (description.isEmpty()) {
             Toast.makeText(MainActivity.this, "Description cannot be empty!", Toast.LENGTH_LONG).show();
+            pb.setVisibility(ProgressBar.INVISIBLE);
             return;
         }
         if (photoFile == null || ivPostImage.getDrawable() == null) {
             Toast.makeText(MainActivity.this, "There is no image!", Toast.LENGTH_LONG).show();
+            pb.setVisibility(ProgressBar.INVISIBLE);
+            return;
         }
         ParseUser currentUser = ParseUser.getCurrentUser();
         savePost(description, currentUser, photoFile);
@@ -177,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Posted!", Toast.LENGTH_LONG).show();
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
+                pb.setVisibility(ProgressBar.INVISIBLE);
             }
         });
     }

@@ -15,11 +15,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import androidx.fragment.app.Fragment;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private File photoFile;
     private Button btnFeed;
     private ProgressBar pb;
+    private BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
         btnFeed = findViewById(R.id.btnFeed);
         pb = findViewById(R.id.pbLoading);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +90,30 @@ public class MainActivity extends AppCompatActivity {
                 submitPostToServer();
             }
         });
+
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment;
+                switch (menuItem.getItemId()) {
+                    case R.id.action_compose:
+                        Toast.makeText(MainActivity.this, "Compose!", Toast.LENGTH_SHORT).show();
+                        //fragment = fragment1;
+                        break;
+                    case R.id.action_home:
+                        //fragment = fragment2;
+                        Toast.makeText(MainActivity.this, "Home!", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_profile:
+                        //fragment = fragment3;
+                        Toast.makeText(MainActivity.this, "Profile!", Toast.LENGTH_SHORT).show();
+                        break;
+                    default: return true;
+                }
+                return true;
+            }
+        });
+
     }
 
     private void submitPostToServer() {
